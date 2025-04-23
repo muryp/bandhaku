@@ -1,0 +1,10 @@
+---
+import '../client/App.css'
+import Main from "../client/App.tsx"
+import Layouts from '../shared/Layouts/index.astro'
+
+const { pathname } = new URL(Astro.request.url)
+---
+<Layouts title='Hello'>
+<Main {pathname} client:only/>
+</Layouts>
