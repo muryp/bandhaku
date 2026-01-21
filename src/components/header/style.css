@@ -1,0 +1,77 @@
+/* Header Container */
+.main-header {
+  height: var(--header-height);
+  background-color: var(--bg-header);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--container-padding);
+  border-bottom: 1px solid rgba(0,0,0,0.1);
+  transition: all 0.3s ease;
+}
+
+.dark-mode .main-header {
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+/* Logo */
+.logo {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-main);
+  letter-spacing: -0.5px;
+}
+
+.logo span {
+  color: var(--accent-color);
+}
+
+/* Toggle Button */
+.theme-toggle {
+  background: transparent;
+  border: 1px solid transparent;
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  color: var(--icon-color);
+  transition: background-color 0.2s;
+}
+
+.theme-toggle:hover {
+  background-color: var(--toggle-hover);
+}
+
+/* Ikon SVG Logika */
+.theme-toggle img {
+  width: 24px;
+  height: 24px;
+  position: absolute;
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s;
+}
+
+/* Animasi perpindahan ikon */
+.dark-mode .sun-icon {
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+.dark-mode .moon-icon {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+body:not(.dark-mode) .sun-icon {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+body:not(.dark-mode) .moon-icon {
+  opacity: 0;
+  transform: translateY(-30px);
+}
