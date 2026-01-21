@@ -75,3 +75,80 @@ body:not(.dark-mode) .moon-icon {
   opacity: 0;
   transform: translateY(-30px);
 }
+
+
+/* --- MOBILE FIRST (Default) --- */
+.main-nav {
+  position: fixed;
+  bottom: 20px; /* Jarak dari bawah */
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: var(--bg-nav-mobile);
+  padding: 10px 20px;
+  border-radius: 25px;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+  z-index: 999;
+  width: 90%;
+  max-width: 400px;
+  border: 1px solid rgba(255,255,255,0.1);
+}
+
+.nav-list {
+  display: flex;
+  justify-content: space-around;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-link {
+  text-decoration: none;
+  color: var(--text-main);
+  font-size: 0.85rem;
+  font-weight: 500;
+  padding: 8px 12px;
+  transition: 0.3s;
+}
+
+.nav-link.active {
+  color: var(--accent-color);
+}
+
+/* --- DESKTOP (Min-width: 768px) --- */
+@media (min-width: 768px) {
+  .main-nav {
+    position: static; /* Kembali ke aliran header */
+    transform: none;
+    background: transparent;
+    box-shadow: none;
+    width: auto;
+    padding: 0;
+    border: none;
+  }
+
+  .main-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 2rem;
+    height: var(--header-height);
+    background-color: var(--bg-header);
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+  }
+
+  .nav-list {
+    gap: 2rem;
+  }
+}
+
+/* Styling tambahan untuk Header Mobile */
+@media (max-width: 767px) {
+  .main-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 1.5rem;
+    height: var(--header-height);
+    background-color: var(--bg-header);
+  }
+}
