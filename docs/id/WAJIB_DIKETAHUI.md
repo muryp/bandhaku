@@ -1,0 +1,1 @@
+- jika menggunakan component yang ada addscript, kalian harus pakai $render
