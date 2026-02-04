@@ -10,18 +10,26 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.39.2",
+    "@muryp/router-dom": "^1.1.0",
     "@muryp/vite-html": "1.0.8",
     "@typescript-eslint/eslint-plugin": "^6.21.0",
+    "@typescript-eslint/parser": "^8.54.0",
     "eslint": "^9.39.2",
     "eslint-plugin-lit": "^1.15.0",
     "eslint-plugin-lit-a11y": "1.1.0-next.1",
     "typescript": "~5.9.3",
     "typescript-eslint": "^8.53.1",
-    "vite": "npm:rolldown-vite@7.2.5"
+    "vite": "npm:rolldown-vite@7.2.5",
+    "vite-tsconfig-paths": "^6.0.5"
   },
   "pnpm": {
     "overrides": {
-      "vite": "npm:rolldown-vite@7.2.5"
+      "vite": "npm:rolldown-vite@7.2.5",
+      "vite-tsconfig-paths": "^6.0.5"
     }
+  },
+  "dependencies": {
+    "frappe-charts": "^1.6.2",
+    "idb": "^8.0.3"
   }
 }
