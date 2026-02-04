@@ -1,0 +1,52 @@
+/* Action Bar Popup */
+.bulk-action-bar {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%) translateY(100px);
+  background: #1e293b; /* Dark theme untuk kontras */
+  color: white;
+  padding: 12px 24px;
+  border-radius: 99px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 100;
+}
+
+.bulk-action-bar.show {
+  transform: translateX(-50%) translateY(0);
+}
+
+.selected-count {
+  font-size: 0.875rem;
+  font-weight: 600;
+  border-right: 1px solid #475569;
+  padding-right: 20px;
+}
+
+.btn-delete-bulk {
+  background: #ef4444;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 99px;
+  font-size: 0.875rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.btn-delete-bulk:hover {
+  background: #dc2626;
+}
+
+.btn-cancel-bulk {
+  background: transparent;
+  color: #94a3b8;
+  border: none;
+  cursor: pointer;
+  font-size: 0.875rem;
+}

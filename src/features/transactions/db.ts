@@ -1,3 +1,4 @@
+import type { TTransaction } from '@/shared/types/transaction'
 // import { db } from '@/shared/db'
 //
 // // TypeScript akan komplain jika isi object tidak sesuai dengan interface di shared
@@ -22,3 +23,31 @@ export const dummyClients = [
   'John Doe',
 ]
 export const dummyTags = ['Invoice', 'Project A', 'Urgent', 'Monthly']
+
+export const db = {
+  clients: [
+    'Andi Hermawan',
+    'Budi Santoso',
+    'Citra Lestari',
+    'Deni Sumargo',
+    'Global Tech',
+  ],
+  tags: ['Business', 'Personal', 'Urgent', 'Monthly', 'Food'],
+  transactions: Array.from(
+    { length: 40 },
+    (_, i): TTransaction => ({
+      id: i + 1,
+      date: `2024-05-${String((i % 28) + 1).padStart(2, '0')}`,
+      type: i % 2 === 0 ? 'piutang' : 'utang',
+      client: [
+        'Andi Hermawan',
+        'Budi Santoso',
+        'Citra Lestari',
+        'Deni Sumargo',
+      ][i % 4],
+      amount: (i + 1) * 250000,
+      wallet: i % 2 === 0 ? 'Cash' : 'Bank',
+      tags: [['Business'], ['Personal', 'Urgent'], ['Monthly']][i % 3],
+    }),
+  ),
+}
