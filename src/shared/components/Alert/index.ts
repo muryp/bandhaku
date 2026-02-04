@@ -1,16 +1,19 @@
-import { $id } from '@/utils/id'
-import { addScript } from '@/utils/addScript'
+import { $id } from '@/shared/utils/id'
+import { addScript } from '@/shared/utils/addScript'
 import type { TAlertOptions } from '@/shared/types/alert'
-import './style.css'
 import { iconAlert } from '@/shared/assets/alert'
+import './style.css'
 
 interface TExtendedAlertOptions extends TAlertOptions {
-  duration?: number // dalam milidetik
+  duration?: number
+  onConfirm?: () => void
+  onCancel?: () => void
 }
 
-//TODO: ICONS INFO AND CHECKN IF ERROR
 export const Alert = (options: TExtendedAlertOptions) => {
   const [containerId, containerAction] = $id()
+  const [yesBtnId, yesBtnAction] = $id()
+  const [noBtnId, noBtnAction] = $id()
 
   const config = {
     error: { icon: iconAlert.error, color: '#ef4444' },
@@ -20,6 +23,7 @@ export const Alert = (options: TExtendedAlertOptions) => {
     ask: { icon: iconAlert.question, color: '#10b981' },
   }[options.type]
 
+  // Logic Handling
   addScript(() => {
     containerAction((el) => {
       const destroy = () => {
@@ -27,21 +31,53 @@ export const Alert = (options: TExtendedAlertOptions) => {
         el.addEventListener('animationend', () => el.remove())
       }
 
+      // Auto-destroy for non-interactive alerts
       if (options.duration && options.type !== 'ask') {
         setTimeout(destroy, options.duration)
       }
 
-      el.addEventListener('click', destroy) // Klik di mana saja untuk hapus (feel mobile)
+      // Interaction for 'ask' type
+      if (options.type === 'ask') {
+        yesBtnAction((btn) => {
+          btn.addEventListener('click', (e) => {
+            e.stopPropagation()
+            options.onConfirm?.()
+            destroy()
+          })
+        })
+
+        noBtnAction((btn) => {
+          btn.addEventListener('click', (e) => {
+            e.stopPropagation()
+            options.onCancel?.()
+            destroy()
+          })
+        })
+      }
+
+      // Base click to dismiss
+      el.addEventListener('click', destroy)
     })
   })
 
+  // Template Fragments
+  const actionButtons = html`
+    <div class="notif-actions">
+      <button ${noBtnId} class="btn-notif btn-no">Batal</button>
+      <button ${yesBtnId} class="btn-notif btn-yes">Ya, Lanjutkan</button>
+    </div>
+  `
+
   return html`
     <div ${containerId} class="mobile-notification ${options.type}">
-      <div class="notif-icon">${config.icon}</div>
-      <div class="notif-body">
-        <div class="notif-title">${options.title}</div>
-        <div class="notif-message">${options.message}</div>
+      <div class="notif-content">
+        <div class="notif-icon">${config.icon}</div>
+        <div class="notif-body">
+          <div class="notif-title">${options.title}</div>
+          <div class="notif-message">${options.message}</div>
+        </div>
       </div>
+      ${options.type === 'ask' ? actionButtons : ''}
       <div class="notif-handle"></div>
     </div>
   `
