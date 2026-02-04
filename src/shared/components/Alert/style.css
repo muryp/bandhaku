@@ -1,0 +1,79 @@
+#toast-container {
+  position: fixed;
+  top: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  max-width: 420px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  z-index: 10000;
+  pointer-events: none; /* Klik bisa tembus ke app jika tidak kena notif */
+}
+
+.mobile-notification {
+  pointer-events: auto; /* Aktifkan klik hanya pada box notif */
+  background: var(--bg-header);
+  border: 1px solid var(--header-border);
+  padding: 1rem;
+  border-radius: 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  box-shadow: var(--shadow-lg);
+  cursor: pointer;
+  user-select: none;
+  animation: slideInMobile 0.4s cubic-bezier(0.18, 0.89, 0.32, 1.28);
+}
+
+.notif-icon {
+  font-size: 1.5rem;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+}
+
+/* Background icon lembut */
+.error .notif-icon   { background: #fee2e2; color: #ef4444; }
+.info .notif-icon    { background: #dbeafe; color: #3b82f6; }
+
+.notif-body {
+  flex: 1;
+}
+
+.notif-title {
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: var(--text-base);
+}
+
+.notif-message {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+
+/* Handle garis kecil di bawah (feel mobile) */
+.notif-handle {
+  width: 4px;
+  height: 24px;
+  background: var(--slate-100);
+  border-radius: var(--radius-full);
+}
+
+@keyframes slideInMobile {
+  from { opacity: 0; transform: translateY(-40px) scale(0.9); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.slide-out {
+  animation: slideOutMobile 0.3s forwards;
+}
+
+@keyframes slideOutMobile {
+  to { opacity: 0; transform: translateX(100%); }
+}
