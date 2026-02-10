@@ -1,0 +1,1 @@
+//TODO: render ini berfungsi untuk melakukan innerhtml components agar addscript dijalankan

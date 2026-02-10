@@ -3,6 +3,7 @@ let staticID: number
 
 export function $id() {
   idCounter++
+  console.log(idCounter)
   const currentId = idCounter.toString()
 
   /**
@@ -10,13 +11,11 @@ export function $id() {
    * Callback (fn) akan dieksekusi untuk SETIAP elemen yang ditemukan.
    * Developer selalu menerima element tunggal sebagai argumen.
    */
-  const action = (
-    fn: (el: HTMLElement | HTMLInputElement | HTMLFormElement) => void,
-  ) => {
+  const action = <T extends HTMLElement = HTMLElement>(fn: (el: T) => void) => {
     const nodes = document.querySelectorAll(`[data-id="${currentId}"]`)
 
     // Internal loop: menjalankan callback satu per satu untuk tiap node
-    nodes.forEach((node) => fn(node as HTMLElement))
+    nodes.forEach((node) => fn(node as T))
   }
 
   return [`data-id="${currentId}"`, action] as const
