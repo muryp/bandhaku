@@ -1,0 +1,157 @@
+/* === COMPONENT: ALERT === */
+
+:root {
+  /* Default/Base Layout */
+  --notif-bg: var(--bg-body);
+  --notif-text-main: var(--slate-900);
+  --notif-text-sub: var(--slate-600);
+  --notif-shadow: var(--shadow-lg);
+  --notif-gap: 0.75rem;
+  --notif-padding: 0.75rem 1rem;
+
+  /* Status Contract Variable (Default ke slate) */
+  --notif-status-color: var(--slate-400);
+}
+
+.dark-mode {
+  --notif-bg: var(--slate-800);
+  --notif-text-main: var(--slate-50);
+  --notif-text-sub: var(--slate-300);
+}
+
+/* ==========================================================================
+   STATE DEFINITIONS (Murni mengubah variable saja)
+   ========================================================================== */
+.mobile-notification.success {
+  --notif-status-color: var(--success);
+}
+.mobile-notification.error {
+  --notif-status-color: var(--error);
+}
+.mobile-notification.warning {
+  --notif-status-color: var(--warning);
+}
+.mobile-notification.info {
+  --notif-status-color: var(--info);
+}
+.mobile-notification.ask {
+  --notif-status-color: var(--primary);
+}
+
+/* ==========================================================================
+   IMPLEMENTATION
+   ========================================================================== */
+.mobile-notification {
+  position: fixed;
+  bottom: 1.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: calc(100% - 2rem);
+  max-width: 450px;
+  background: var(--notif-bg);
+  border: 1px solid var(--slate-200);
+  border-left: 4px solid var(--notif-status-color); /* Konsumsi var status */
+  border-radius: var(--radius-lg);
+  box-shadow: var(--notif-shadow);
+  padding: var(--notif-padding);
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  animation: alert-slide-in 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.notif-content-wrapper {
+  display: flex;
+  align-items: center;
+  gap: var(--notif-gap);
+  width: 100%;
+}
+
+.notif-icon {
+  flex-shrink: 0;
+  width: 1.25rem;
+  height: 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--notif-status-color);
+}
+
+/* Memastikan SVG mengikuti warna notif-icon */
+.notif-icon svg {
+  width: 100%;
+  height: 100%;
+  stroke: currentColor;
+}
+
+.notif-body {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  overflow: hidden;
+}
+
+.notif-title {
+  font-weight: 600;
+  color: var(--notif-text-main);
+  font-size: 0.875rem;
+  white-space: nowrap;
+}
+
+.notif-message {
+  color: var(--notif-text-sub);
+  font-size: 0.875rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* .notif-close-btn { */
+/*   flex-shrink: 0; */
+/*   width: 28px !important; */
+/*   height: 28px !important; */
+/*   padding: 0 !important; */
+/*   min-width: unset !important; */
+/*   display: flex !important; */
+/*   align-items: center; */
+/*   justify-content: center; */
+/*   background: transparent !important; */
+/*   border-radius: var(--radius-md) !important; */
+/*   color: var(--notif-text-sub); */
+/*   font-size: 0.75rem !important; */
+/*   transition: all 0.2s ease; */
+/* } */
+/**/
+/* .notif-close-btn:hover { */
+/*   background-color: var(--slate-100); */
+/*   color: var(--notif-text-main); */
+/* } */
+
+/* Animations */
+@keyframes alert-slide-in {
+  from {
+    opacity: 0;
+    transform: translate(-50%, 1rem);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+}
+
+.slide-out {
+  animation: alert-slide-out 0.2s ease-in forwards;
+}
+
+@keyframes alert-slide-out {
+  from {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+  to {
+    opacity: 0;
+    transform: translate(-50%, 0.5rem);
+  }
+}
