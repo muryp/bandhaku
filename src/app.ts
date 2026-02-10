@@ -1,16 +1,20 @@
-import './main.css'
-import router from './router'
-import { Header } from '@/shared/components/Header'
-import { darkBtn } from '@/utils/darkBtn'
+import './styles.css'
 import { staticId } from './shared/utils/id'
+import { Header } from '@/shared/components/Nav'
+import router from './router'
+import { NavData } from './shared/consts/navList'
 
 // add header navigation
 const app = document.getElementById('app')
 const elemenBaru = document.createElement('div')
-elemenBaru.innerHTML = Header
-app!.before(elemenBaru)
-darkBtn()
 
-// add router
+export const AppHeader = Header({
+  brandName: 'Bandhaku',
+  // logoUrl: '/vite.svg',
+  menuItems: NavData,
+})
+elemenBaru.innerHTML = AppHeader
+app!.before(elemenBaru)
 router()
+
 staticId()
