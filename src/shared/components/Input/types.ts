@@ -8,8 +8,10 @@ export type TInputType =
   | 'textarea'
   | 'tel'
   | 'date'
+  | 'checkbox'
 
-export interface TInputProps extends Omit<TCommonUIProps, 'variant'> {
+export interface IBaseInputProps extends Omit<TCommonUIProps, 'variant'> {
+  isChecked?: boolean
   disabled?: boolean
   label?: string
   type?: TInputType
@@ -25,3 +27,8 @@ export interface TInputProps extends Omit<TCommonUIProps, 'variant'> {
     e: Event,
   ) => void
 }
+export type TInputProps = IBaseInputProps &
+  (
+    | { type: 'checkbox' | 'radio'; checked?: boolean }
+    | { type?: Exclude<TInputType, 'checkbox' | 'radio'>; checked?: never }
+  )

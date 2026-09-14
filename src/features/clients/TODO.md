@@ -1,0 +1,5 @@
+- [ ] melakukan crud
+- [ ] client terdiri dari :
+  - [ ] nama
+  - [ ] photo profil
+  - [ ] description

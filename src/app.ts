@@ -3,6 +3,8 @@ import { staticId } from './shared/utils/id'
 import { Header } from '@/shared/components/Nav'
 import router from './router'
 import { NavData } from './shared/consts/navList'
+import tesDev from './tesDev'
+import './tesService/debug'
 
 // add header navigation
 const app = document.getElementById('app')
@@ -18,3 +20,6 @@ app!.before(elemenBaru)
 router()
 
 staticId()
+if (import.meta.env.DEV) {
+  tesDev()
+}

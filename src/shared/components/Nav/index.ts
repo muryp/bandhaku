@@ -19,7 +19,7 @@ export const Header = ({ brandName, logoUrl, menuItems }: THeaderProps) => {
   // Sesuai aturan: Eksekusi fungsi di ${...} WAJIB ditaruh di variabel fragmen
   const NavLinks = menuItems
     .map((item) => {
-      const ItemLabel = `
+      const ItemLabel = html`
       <span class="flex flex-col md:flex-row items-center gap-1 md:gap-2">
         <span class="w-6 h-6 md:w-5 md:h-5 flex items-center justify-center">${IconsNav[item.icon]}</span>
         <span class="text-[10px] md:text-sm font-medium">${item.name}</span>

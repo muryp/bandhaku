@@ -1,8 +1,6 @@
 import MurypRoutesDom from '@muryp/router-dom'
 import { AddRouter } from './features/transactions/router'
 import type { TMurypRoutes } from '@muryp/router-dom/types'
-import { HomePages } from './bak/pages/home'
-import addScript from './bak/pages/add/script'
 import { executeScripts } from '@/utils/addScript'
 import { resetId } from '@/utils/id'
 
@@ -15,14 +13,14 @@ const routes: TMurypRoutes = {
       console.log('404 script executed', url)
     },
   },
-  '/example': {
-    component: () => {
-      return HomePages
-    },
-    script: () => {
-      addScript()
-    },
-  },
+  // '/example': {
+  //   component: () => {
+  //     return HomePages
+  //   },
+  //   script: () => {
+  //     addScript()
+  //   },
+  // },
   '/': {
     component: () => {
       return html`hrllo`
